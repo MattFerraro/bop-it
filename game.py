@@ -26,6 +26,22 @@ OPTIONS = [
     {"msg": "flick it!", "response": "flick"},
     {"msg": "spin it!", "response": "spin"},
 ]
+UNUSUAL_OPTIONS = [
+    {"msg": "lick it!", "response": "lick"},
+    {"msg": "kick it!", "response": "kick"},
+    {"msg": "punch it!", "response": "punch"},
+    {"msg": "behold it!", "response": "behold"},
+    {"msg": "ignore it!", "response": "ignore"},
+    {"msg": "dismiss it!", "response": "dismiss"},
+    {"msg": "foresee it!", "response": "foresee"},
+    {"msg": "forget it!", "response": "forget"},
+    {"msg": "forgive it!", "response": "forgive"},
+    {"msg": "forsake it!", "response": "forsake"},
+    {"msg": "abide it!", "response": "abide"},
+    {"msg": "accept it!", "response": "accept"},
+    {"msg": "withhold it!", "response": "withhold"},
+    {"msg": "withstand it!", "response": "withstand"},
+]
 ON_LOSE = [
     "Game Over! Your score was: {}",
     "You lose! Your score was: {}",
@@ -38,10 +54,14 @@ ON_LOSE = [
 ]
 
 def game():
-    time_limit = 2 # s
+    time_limit = 3 # s
     score = 0
+    fully_unusual = 40
     while True:
-        option = random.choice(OPTIONS)
+        if random.random() < score / fully_unusual:
+            option = random.choice(UNUSUAL_OPTIONS)
+        else:
+            option = random.choice(OPTIONS)
         response = input_with_timeout(option["msg"] + "\n", time_limit)
         if response != option["response"]:
             print(random.choice(ON_LOSE).format(score))
