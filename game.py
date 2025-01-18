@@ -82,7 +82,9 @@ def game():
     fully_unusual = 40
 
     while True:
-        if score < 50:
+        if score < 8:
+            option = random.choice(VERBS)
+        elif score < 50:
             if random.random() < score / fully_unusual:
                 option = random.choice(UNUSUAL_VERBS)
             else:
