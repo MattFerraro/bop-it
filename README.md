@@ -1,0 +1,24 @@
+# Bop-It Text Edition
+
+Welcome to Bop It _Text Edition!_
+
+To play the game:
+
+```bash
+$ python game.py
+Welcome to Bop It!
+Press Enter to start
+
+bop it!
+bop
+
+pull it!
+pull
+
+twist it!
+twist
+
+pull it!
+pll
+Game Over! Your score was: 3
+```
