@@ -57,6 +57,12 @@ VERY_UNUSUAL_VERBS = [
     "unlink",
     "unhook",
     "polyphonize",
+    "hypothesize",
+    "anthropomorphize",
+    "demythologize",
+    "disenfranchise",
+    "internationalize",
+    "polyploidize",
 ]
 
 ON_LOSE = [
