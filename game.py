@@ -19,29 +19,46 @@ def input_with_timeout(prompt, timeout):
     finally:
         signal.alarm(0)  # Cancel the alarm
 
-OPTIONS = [
-    {"msg": "bop it!", "response": "bop"},
-    {"msg": "twist it!", "response": "twist"},
-    {"msg": "pull it!", "response": "pull"},
-    {"msg": "flick it!", "response": "flick"},
-    {"msg": "spin it!", "response": "spin"},
+VERBS = [
+    "bop",
+    "twist",
+    "pull",
+    "flick",
+    "spin",
 ]
-UNUSUAL_OPTIONS = [
-    {"msg": "lick it!", "response": "lick"},
-    {"msg": "kick it!", "response": "kick"},
-    {"msg": "punch it!", "response": "punch"},
-    {"msg": "behold it!", "response": "behold"},
-    {"msg": "ignore it!", "response": "ignore"},
-    {"msg": "dismiss it!", "response": "dismiss"},
-    {"msg": "foresee it!", "response": "foresee"},
-    {"msg": "forget it!", "response": "forget"},
-    {"msg": "forgive it!", "response": "forgive"},
-    {"msg": "forsake it!", "response": "forsake"},
-    {"msg": "abide it!", "response": "abide"},
-    {"msg": "accept it!", "response": "accept"},
-    {"msg": "withhold it!", "response": "withhold"},
-    {"msg": "withstand it!", "response": "withstand"},
+UNUSUAL_VERBS = [
+    "lick",
+    "kick",
+    "punch",
+    "behold",
+    "ignore",
+    "dismiss",
+    "foresee",
+    "forget",
+    "forgive",
+    "forsake",
+    "abide",
+    "accept",
+    "withhold",
+    "withstand",
+    "perplex",
 ]
+VERY_UNUSUAL_VERBS = [
+    "genuflect",
+    "overthrow",
+    "incite",
+    "beknight",
+    "betray",
+    "bewitch",
+    "aggregate",
+    "debase",
+    "devastate",
+    "deface",
+    "unlink",
+    "unhook",
+    "polyphonize",
+]
+
 ON_LOSE = [
     "Game Over! Your score was: {}",
     "You lose! Your score was: {}",
@@ -57,17 +74,26 @@ def game():
     time_limit = 3 # s
     score = 0
     fully_unusual = 40
+
     while True:
-        if random.random() < score / fully_unusual:
-            option = random.choice(UNUSUAL_OPTIONS)
+        if score < 50:
+            if random.random() < score / fully_unusual:
+                option = random.choice(UNUSUAL_VERBS)
+            else:
+                option = random.choice(VERBS)
         else:
-            option = random.choice(OPTIONS)
-        response = input_with_timeout(option["msg"] + "\n", time_limit)
-        if response != option["response"]:
+            if random.random() < 0.1:
+                option = random.choice(VERBS)
+            else:
+                option = random.choice(VERY_UNUSUAL_VERBS)
+
+        response = input_with_timeout(f"{score}: {option} it!\n", time_limit)
+        if response != option:
+            print()
             print(random.choice(ON_LOSE).format(score))
             break
         score += 1
-        print("")
+        print()
 
 def main():
     print("Welcome to Bop It!")
