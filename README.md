@@ -1,6 +1,6 @@
-# Bop-It Text Edition
+# Bop-It Command Line Edition
 
-Welcome to Bop It _Text Edition!_
+Welcome to Bop It _Command Line Edition!_
 
 To play the game:
 
